@@ -1,0 +1,77 @@
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 2rem;
+    background: linear-gradient(90deg, #FFBF00, #a83b00); /* Amber to Dark Brown */
+    position: sticky;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-logo {
+    width: 90px;
+    height: auto;
+}
+
+.search-icon {
+    width: 75px;
+    height: auto;
+}
+
+.search-icon {
+    width: 75px;
+    height: auto;
+}
+
+.navbar-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* 
+.nav-link {
+    font-size: 1.1rem;
+    color: #201c1c !important;
+    transition: color 0.2s ease-in-out;
+} */
+
+.nav-pills .profile-nav-link:hover {
+    color: hsl(0, 18%, 30%) !important;
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.btn-outline-light {
+    border-radius: 50px;
+    font-size: 0.9rem;
+    padding: 0.4rem 1.2rem;
+}
+
+.btn-danger {
+    border-radius: 50px;
+    font-size: 0.9rem;
+    padding: 0.4rem 1.2rem;
+}
+
+/* Logo section styling */
+#BBLogo {
+    width: 50px;
+    height: 50px;
+}
+
+.navbarButtons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media (max-width: 992px) {
+    .navbar-title {
+        font-size: 1.3rem;
+    }
+}

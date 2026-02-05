@@ -1,0 +1,175 @@
+/*
+    home.css: This website contains selectors only used in home.css
+
+    All pages share the styles on index.css but you should create 
+    one more css for each page that will contain the selected used 
+    on that page only (the ones not reused in other pages).
+*/
+
+.home-logo-img {
+    height: auto;
+    max-width: 100%;
+    width: auto; /* Ensure the image scales properly */
+}
+
+.splash-logo-img {
+    height: auto;
+    max-width: 90%;
+    width: auto; /* Ensure the image scales properly */
+    border-radius: 50%;
+}
+
+.home-container {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.7; /* Adjust this value to make the background more or less visible */
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.content {
+    flex-grow: 1;
+}
+
+/* Layout for homepage section split */
+.homepage-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    padding: 20px;
+}
+
+.left-section, .right-section {
+    flex: 1; /* Each section takes up half of the width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Logo styling */
+.home-logo-img {
+    max-width: 90%;
+    height: auto; /* Ensure the image scales proportionally */
+}
+
+/* Text box styling */
+.right-section .text-box {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 90%; /* Ensure the text box does not overflow horizontally */
+    text-align: center;
+    min-height: 60vh; /* Makes the text box take up 60% of the viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically within the text box */
+}
+
+.right-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.right-section p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+/* Age Verification Popup Styles */
+.age-verification-popup {
+    display: flex;
+    width: 80%; /* Adjust width as needed */
+    max-width: 800px; /* Limit maximum width */
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden; /* Prevent content from overflowing */
+}
+
+.image-section {
+    flex: 1; /* Take half of the popup */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-section img {
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.text-section {
+    flex: 1; /* Take the other half of the popup */
+    padding: 20px; /* Add some padding */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center the content vertically */
+    align-items: center; /* Center the content horizontally */
+    text-align: center; /* Center text */
+}
+
+.age-verification-button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Add border radius */
+    cursor: pointer; /* Change cursor to pointer */
+    background-color: #FFBF00; /* Use an appealing color */
+    color: white; /* Text color */
+    font-size: 1rem; /* Adjust font size */
+}
+
+.full-page-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2; /* Make sure it's above the background image */
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Keep text color the same */
+}
+
+  
+  /* Footer styles
+  .footer {
+    background-color: #f8f9fa;
+    color: #333;
+    border-top: 1px solid #eaeaea;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+  
+  .footer .container {
+    padding: 10px 0;
+  } */
