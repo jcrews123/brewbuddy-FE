@@ -60,7 +60,6 @@ const store = create((set, get) => ({
                                 let data = await resp.json();
                                 console.log(data);
                                 const breweryInfos = data.map(brewery => new BreweryInfo(brewery));
-                                const storeReviews = get().reviews;
             
                                 // breweryInfos.forEach(brewery => {
                                 // 	const breweryReviews = storeReviews.filter(review => review.brewery_id === brewery.id); OLD CODE FOR ADDING REVIEWS INTO ARRAY THAT IS NO MORE
@@ -126,8 +125,6 @@ const store = create((set, get) => ({
                                     const data = await resp.json();
                                     console.log("brewery deleted from favorites: ", data);
             
-                                    const store = get();
-            
                                     set({
                                         favoriteBreweries: get().favoriteBreweries.filter((x) => {
                                             return x != brewery;
@@ -157,7 +154,7 @@ const store = create((set, get) => ({
                                 });
                                 let data = await response.json();
                                 console.log(data)
-                                const brewery = new BreweryInfo(data);
+                                // const brewery = new BreweryInfo(data);
                                 data.forEach(element => {
                                     if (element.state == store.state) {
                                         breweries.push(element)
@@ -169,7 +166,6 @@ const store = create((set, get) => ({
                             }
                         },
                         searchFunctionWithLocation: async (type) => {
-                            const store = get();
                             const actions = getActions();
                             set({ type: type })
                             if ("geolocation" in navigator) {
