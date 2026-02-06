@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Context } from '../store/appContext';
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { Cloudinary } from '@cloudinary/url-gen';
 import { AdvancedImage } from '@cloudinary/react';
 import { fill } from '@cloudinary/url-gen/actions/resize';
 import { image } from '@cloudinary/url-gen/qualifiers/source';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 export const ReviewForm = ({ brewery, onSaveReview }) => {
     const [overallRating, setOverallRating] = useState(0);

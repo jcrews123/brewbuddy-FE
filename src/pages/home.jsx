@@ -1,16 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import brewbuddyimg from "../../img/DALL·E 2024-08-18.png"
-import "../../styles/home.css";
+import "../styles/home.css";
 import { BreweryCard } from "../component/BootstrapCard";
-import { BreweryRouteCard } from "../component/BootstrapCardRoute";
-import Modal from "../component/searchModal";
-import { Link } from "react-router-dom";
-import HomeLogo1 from "../../img/HomeLogo1.png"
-import AgeVerificationPic2 from "../../img/AgeVerificationPic2.webp"
-import background1 from "../../img/DALL·E 2024-09-04.webp"
-import splashLogo1 from "../../img/splashLogo1.webp"
-import finalLogo2 from "../../img/finalLogo2.png";
+import { Link } from "react-router";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -50,18 +42,18 @@ export const Home = () => {
 
 	return (
 		<div className="home-container">
-			<img src={background1} alt="Background" className="background-image" />
+			<img src={"/img/DALL·E 2024-09-04.webp"} alt="Background" className="background-image" />
 			<Link to="/search" className="full-page-link">
 				<div className="content">
 					<div className="homepage-section">
 						<div className="left-section">
-							<img src={splashLogo1} className="splash-logo-img" alt="BrewBuddy Logo" />
+							<img src={"/img/splashLogo1.webp"} className="splash-logo-img" alt="BrewBuddy Logo" />
 						</div>
 						<div className="right-section">
 							<div className="text-box">
 								<h2>Welcome to BrewBuddy!</h2>
 								<p>Discover your next favorite brewery and curate exciting beer routes just for you!</p>
-								<img src={finalLogo2} className="home-logo-img ps-5" alt="BrewBuddy Logo" />
+								<img src={"/img/finalLogo2.png"} className="home-logo-img ps-5" alt="BrewBuddy Logo" />
 							</div>
 						</div>
 					</div>
@@ -85,7 +77,7 @@ export const Home = () => {
 				>
 					<div className="age-verification-popup">
 						<div className="image-section">
-							<img src={AgeVerificationPic2} alt="Age Verification Logo" />
+							<img src={"/img/AgeVerificationPic2.webp"} alt="Age Verification Logo" />
 						</div>
 						<div className="text-section">
 							<h2>Age Verification</h2>

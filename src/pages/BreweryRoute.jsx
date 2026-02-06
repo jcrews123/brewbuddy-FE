@@ -1,10 +1,9 @@
 import React, { useContext, useState, useCallback } from "react";
 import { Context } from "../store/appContext";
-import brewbuddyimg from "../../img/DALL·E 2024-08-18.png"
-import "../../styles/home.css";
+import "../styles/home.css";
 import { BreweryCard, JourneyCard } from "../component/BootstrapCard";
 import { ReviewForm } from '../component/ReviewForm';
-import "../../styles/BreweryRoute.css"
+import "../styles/BreweryRoute.css"
 import { BreweryRouteCard } from "../component/BootstrapCardRoute";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 

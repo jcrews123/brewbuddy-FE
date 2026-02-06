@@ -1,10 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-
+import { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/favorites.css";
+import "../styles/favorites.css";
 import {FavoriteBeers} from "../component/FavoriteBeers"
-import craft from "../../img/craft.jpg"
 import {FavoriteBreweries} from "../component/FavoriteBreweries"
 import FavoritePeople from "../component/FavoritePeople";
 
@@ -105,7 +102,7 @@ export const Favorites = () => {
               width: "300px",
               height: "200px",
               backgroundImage:
-                `url(${craft})`,
+                `url("/img/craft.jpg")`,
               backgroundSize: "cover",
               backgroundPosition: "right 9px center",
             }}

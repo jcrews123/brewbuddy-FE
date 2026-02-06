@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
 import { Cloudinary } from '@cloudinary/url-gen';
 import { AdvancedImage } from '@cloudinary/react';
-import "../../styles/UserProfile.css";
+import "../styles/UserProfile.css";
 import { fill } from '@cloudinary/url-gen/actions/resize';
-import background1 from "../../img/DALL·E 2024-09-04.webp"
 import UserDetails from "../component/UserDetails";
 export const UserProfile = () => {
     const { store, actions } = useContext(Context);

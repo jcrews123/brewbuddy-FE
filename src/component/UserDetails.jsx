@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Context } from "../store/appContext";
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 export default function UserDetails(props) {
 
     const { store, actions } = useContext(Context);

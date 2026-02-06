@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { Context } from "../store/appContext";
-import '../../styles/routecard.css'
+import '../styles/routecard.css'
 
 export const BreweryRouteCard = (props) => {
     const { store, actions } = useContext(Context);

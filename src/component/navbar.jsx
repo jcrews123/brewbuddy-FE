@@ -1,10 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { Link, useNavigate } from "react-router-dom";
-import "../../styles/navbar.css";
-import searchLogo1 from "../../img/searchLogo1.png";
-import HomeLogo2 from "../../img/HomeLogo2.png";
-import finalLogo2 from "../../img/finalLogo2.png";
+import { Link, useNavigate } from "react-router";
+import "../styles/navbar.css";
 
 export const Navbar = () => {
     const { store, actions } = useContext(Context);
@@ -26,10 +23,10 @@ export const Navbar = () => {
             <div className="container-fluid d-flex justify-content-between align-items-center">
                 {/* Logo section */}
                 <div>
-                    <img src={HomeLogo2} alt="Home Icon" className="navbar-logo" />
+                    <img src={"/img/HomeLogo2.png"} alt="Home Icon" className="navbar-logo" />
                 </div>
                 <Link to="/search" className="nav-link d-flex flex-row align-items-center my-auto mx-3">
-                    <img src={searchLogo1} alt="Search Icon" className="search-icon" />
+                    <img src={"/img/searchLogo1.png"} alt="Search Icon" className="search-icon" />
                     <span className="home-text mt-1">Search</span>
                 </Link>
 

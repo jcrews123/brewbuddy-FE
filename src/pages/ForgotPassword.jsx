@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
 
 export const ForgotPassword = () => {
     const { store } = useContext(Context);

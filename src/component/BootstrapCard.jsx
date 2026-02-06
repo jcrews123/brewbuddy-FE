@@ -1,22 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
-import microIcon from '../../img/micro1.png';
-import nanoIcon from '../../img/nano1.png';
-import regionalIcon from '../../img/regional1.png';
-import largeIcon from '../../img/large1.png';
-import brewpubIcon from '../../img/brewpub1.png';
-import '../../styles/JourneyCard.css'
+import { Link } from "react-router";
+import '../styles/JourneyCard.css'
 
 
 const breweryTypeIcons = {
-    micro: microIcon,
-    nano: nanoIcon,
-    regional: regionalIcon,
-    large: largeIcon,
-    brewpub: brewpubIcon
+    micro: "/img/micro1.png",
+    nano: "/img/nano1.png",
+    regional: "/img/regional1.png",
+    large: "/img/large1.png",
+    brewpub: "/img/brewpub1.png"
 };
 
 

@@ -1,5 +1,4 @@
 import React, { createContext, useReducer, useEffect } from "react";
-import PropTypes from "prop-types";
 import imageReducer from "./imageReducer";
 
 export const ImageContext = createContext(null);

@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Reward } from "../store/flux";
-import background1 from "../../img/DALL·E 2024-09-04.webp"
-import "../../styles/points.css";
+import "../styles/points.css";
 
 export const Points = () => {
     const [selectedSize, setSelectedSize] = useState("Size");

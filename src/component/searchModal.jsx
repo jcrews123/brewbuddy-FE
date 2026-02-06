@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import getState from "../store/flux";
 
 const Modal = () => {
-    const { store, actions, setStore } = useContext(Context);;
+    const { actions } = useContext(Context);;
     const [cityValue, setCityValue] = useState("")
     const [stateValue, setStateValue] = useState("")
     const [typeValue, setTypeValue] = useState("")

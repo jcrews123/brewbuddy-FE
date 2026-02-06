@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { Context } from "../store/appContext";
 import { BeerCard } from "../component/beerCard";
 

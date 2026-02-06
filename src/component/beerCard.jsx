@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { solid } from "@cloudinary/url-gen/actions/border";
 
 export const BeerCard = (props) => {
