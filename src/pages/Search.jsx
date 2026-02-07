@@ -1,15 +1,15 @@
-import { useContext, useEffect} from "react";
-import { Context } from "../store/appContext";
+import { useEffect} from "react";
 import "../styles/home.css";
 import { BreweryCard } from "../component/BootstrapCard";
 import Modal from "../component/searchModal";
-
+import useDefaultStore from "../store/store";
 export const Search = () => {
-	const { store, actions } = useContext(Context);
+	const store = useDefaultStore()
+    const actions = useDefaultStore()
 
 	useEffect(() => {
 		actions.getBreweryReviewsFromBackend();
-	}, []); // Empty array ensures it runs only once
+	}, [actions]); // Empty array ensures it runs only once
 
 	const eachBrewery = store.breweryData.map((breweryData, index) => (
 		<BreweryCard key={index} breweryData={breweryData} />

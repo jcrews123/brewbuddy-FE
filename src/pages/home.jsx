@@ -1,11 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../store/appContext";
+import { useEffect, useState } from "react";
 import "../styles/home.css";
 import { BreweryCard } from "../component/BootstrapCard";
 import { Link } from "react-router";
+import useDefaultStore from "../store/store";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+	const store = useDefaultStore()
+    const actions = useDefaultStore()
+
 	const [showAgeVerification, setShowAgeVerification] = useState(false);
 
 	useEffect(() => {
@@ -16,11 +18,11 @@ export const Home = () => {
 		}
 	}, []); // Empty array ensures it runs only once
 
-	const eachBrewery = store.breweryData.map((breweryData, index) => (
-		<div className="col-12 col-md-6 col-lg-4 mb-4" key={index}>
-			<BreweryCard breweryData={breweryData} />
-		</div>
-	));
+	// const eachBrewery = store.breweryData.map((breweryData, index) => (
+	// 	<div className="col-12 col-md-6 col-lg-4 mb-4" key={index}>
+	// 		<BreweryCard breweryData={breweryData} />
+	// 	</div>
+	// ));
 
 	const handleAgeVerification = (isOver21) => {
 		if (isOver21) {

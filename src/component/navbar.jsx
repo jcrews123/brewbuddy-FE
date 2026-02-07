@@ -1,17 +1,18 @@
-import React, { useContext, useEffect } from "react";
-import { Context } from "../store/appContext";
+import {  useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 import "../styles/navbar.css";
+import useDefaultStore from "../store/store";
 
 export const Navbar = () => {
-    const { store, actions } = useContext(Context);
+    const store = useDefaultStore()
+    const actions = useDefaultStore()
     const navigate = useNavigate();
 
     useEffect(() => {
         if (store.token) {
             actions.fetchUserInfo();
         }
-    }, [store.token]);
+    }, [store.token, actions]);
 
     const handleLogout = () => {
         actions.logout();

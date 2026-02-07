@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
-import { Context } from "../store/appContext";
-
+import { useState } from "react";
+import useDefaultStore from "../store/store";
 const Modal = () => {
-    const { actions } = useContext(Context);;
+    const actions = useDefaultStore()
     const [cityValue, setCityValue] = useState("")
     const [stateValue, setStateValue] = useState("")
     const [typeValue, setTypeValue] = useState("")

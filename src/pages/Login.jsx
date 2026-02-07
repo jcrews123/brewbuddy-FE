@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Context } from "../store/appContext";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
+import useDefaultStore from "../store/store";
 
 export const Login = () => {
-    const { store, actions } = useContext(Context);
+    const actions = useDefaultStore()
     const [credentials, setCredentials] = useState({ email: "", password: "" });
     const navigate = useNavigate();
 

@@ -1,6 +1,133 @@
 import { create } from "zustand";
 
-const store = create((set, get) => ({
+
+class BreweryInfo {
+	constructor(resultFromServer) {
+		this.id = resultFromServer.id;
+		this.name = resultFromServer.name;
+		this.brewery_type = resultFromServer.brewery_type;
+		this.address_1 = resultFromServer.address_1;
+		this.address_2 = resultFromServer.address_2;
+		this.address_3 = resultFromServer.address_3;
+		this.city = resultFromServer.city;
+		this.state_province = resultFromServer.state_province;
+		this.postal_code = resultFromServer.postal_code;
+		this.country = resultFromServer.country;
+		this.longitude = parseFloat(resultFromServer.longitude);
+		this.latitude = parseFloat(resultFromServer.latitude);
+		this.phone = resultFromServer.phone;
+		this.website_url = resultFromServer.website_url;
+		this.state = resultFromServer.state;
+		this.street = resultFromServer.street;
+	}
+
+	// addReviews(reviewsArray) {
+	// 	this.reviews = reviewsArray
+	// 	console.log("setting reviews to " + reviewsArray.length) DONT NEED ANYMORE I DONT THINK
+	// }
+}
+class Address {
+	constructor(breweryInfo) {
+		this.street = breweryInfo.street || breweryInfo.address_1;
+		this.city = breweryInfo.city;
+		this.state = breweryInfo.state;
+		this.postal_code = breweryInfo.postal_code;
+		this.country = breweryInfo.country
+	}
+}
+class BreweryDestination {
+	constructor(breweryInfo) {
+		this.id = breweryInfo.id;
+		this.name = breweryInfo.name;
+		this.brewery_type = breweryInfo.brewery_type;
+		this.phone = breweryInfo.phone
+		this.website_url = breweryInfo.website_url;
+		this.longitude = breweryInfo.longitude;
+		this.latitude = breweryInfo.latitude;
+		this.address = new Address(breweryInfo); //create an address instance using BreweryInfo
+	}
+}
+class Route {
+	constructor(breweryDestination, travelTime, miles) {
+		this.breweryDestination = breweryDestination; // this is an instance of the brewery destination class
+		this.travelTime = travelTime; //shown in minutes ideally
+		this.miles = miles //shown in miles ideally... Km?
+	}
+}
+class Journey {
+	constructor() {
+		this.routes = []; // list of route objects
+		this.breweryReviews = [];
+		this.activeRouteIndex = -1;
+	}
+	addRoute(route) {
+		this.routes.push(route);
+	}
+	addBreweryReview(breweryReview) {
+		this.breweryReviews.push(breweryReview);
+	}
+	getBreweryReview(breweryId) {
+		return this.breweryReviews.find(review => review.brewery.id === breweryId);
+	}
+	setActiveRoute(index) {
+		if (index >= 0 && index < this.routes.length) {
+			this.activeRouteIndex = index;
+		} else {
+			throw new Error("Invalid route index.");
+		}
+	}
+	getActiveRoute() {
+		if (this.activeRouteIndex !== -1) {
+			return this.routes[this.activeRouteIndex];
+		}
+		return null;
+	}
+	getTotalTravelTime() {
+		return this.routes.reduce((total, route) => total + route.travelTime, 0)
+	}
+	getTotalMiles() {
+		return this.routes.reduce((total, route) => total + route.miles)
+	}
+}
+
+class BeerReview {
+	constructor(beerName, rating, notes = "", isFavorite = false) {
+		this.beerName = beerName;
+		this.rating = rating;
+		this.notes = notes;
+		this.isFavorite = isFavorite;
+		this.dateTried = new Date();
+	}
+}
+class BreweryReview {
+	constructor(brewery, overallRating, reviewText = "", isFavoriteBrewery = false) {
+		this.brewery = brewery;
+		this.overallRating = overallRating;
+		this.reviewText = reviewText;
+		this.beerReviews = [];
+		this.isFavoriteBrewery = isFavoriteBrewery;
+		this.visitDate = new Date();
+	}
+
+
+	// Method to add a beer review
+	addBeerReview(beerReview) {
+		this.beerReviews.push(beerReview);
+	}
+}
+
+export class Reward {
+	constructor(rewardData) {
+		this.reward_name = rewardData.reward_name;
+		this.reward_type = rewardData.reward_type;
+		this.reward_value = rewardData.reward_value;
+		this.point_cost = rewardData.point_cost;
+
+	}
+}
+
+
+const useDefaultStore = create((set, get) => ({
   token: sessionStorage.getItem("token") || "",
   userEmail: sessionStorage.getItem("userEmail") || null,
   // userData: null,
@@ -144,7 +271,7 @@ const store = create((set, get) => ({
                         searchFunctionWithCity: async () => {
                             try {
                                 const store = get();
-                                const actions = getActions();
+                                const actions = get();
                                 const breweries = []
                                 const response = await fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=${store.city}`, {
                                     method: "GET",
@@ -166,7 +293,7 @@ const store = create((set, get) => ({
                             }
                         },
                         searchFunctionWithLocation: async (type) => {
-                            const actions = getActions();
+                            const actions = get();
                             set({ type: type })
                             if ("geolocation" in navigator) {
                                 try {
@@ -193,7 +320,7 @@ const store = create((set, get) => ({
                             }
                         },
                         handleSearch: (city, state, type) => {
-                            const actions = getActions();
+                            const actions = get();
                             set({ city: city, state: state, type: type })
                             actions.searchFunctionWithCity()
                         },
@@ -234,7 +361,7 @@ const store = create((set, get) => ({
                         fetchUserPoints: async () => {
                             try {
                                 const resp = await fetch("/api/user/points", {
-                                    headers: { 'Authorization': `Bearer ${token}` },
+                                    headers: { 'Authorization': `Bearer ${get().token}` },
                                 });
                                 const data = await resp.json();
                                 set({ userPoints: data.points });
@@ -346,7 +473,7 @@ const store = create((set, get) => ({
                                 });
             
                                 if (response.ok) {
-                                    await getActions().getFavoriteBeers();
+                                    await get().getFavoriteBeers();
                                     let json = await response.json()
                                     alert(json.message);
                                     return true;
@@ -580,7 +707,7 @@ const store = create((set, get) => ({
                                     console.log(`Reward redeemed: ${result.message}`);
             
                                     // Fetch updated points after successful redemption
-                                    getActions().fetchUserInfo();
+                                    get().fetchUserInfo();
             
                                     return { success: true, message: result.message };
                                 } else {
@@ -624,4 +751,6 @@ const store = create((set, get) => ({
                             sessionStorage.setItem("over20", true);
                         }
 }));
+
+export default useDefaultStore
 
