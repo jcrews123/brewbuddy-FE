@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Context } from "../store/appContext";
+import React, { useState } from "react";
+import useDefaultStore from "../store/store";
 const FavoritePeople = () => {
   const [items, setItems] = useState([
     { email: "JohnDoe@email.com", username: "JohnDoe" }
   ])
-  const { store, actions } = useContext(Context);
+  const store = useDefaultStore()
   return <ul>
 
     {items.map((item, index) => {

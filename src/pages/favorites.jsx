@@ -1,12 +1,12 @@
-import { useEffect, useContext } from "react";
-import { Context } from "../store/appContext";
+import { useEffect } from "react";
 import "../styles/favorites.css";
 import {FavoriteBeers} from "../component/FavoriteBeers"
 import {FavoriteBreweries} from "../component/FavoriteBreweries"
 import FavoritePeople from "../component/FavoritePeople";
+import useDefaultStore from "../store/store";
 
 export const Favorites = () => {
-  const { store, actions } = useContext(Context);
+  const actions = useDefaultStore()
   useEffect(() => {
     let getData = async () => {
       let beersSuccess = await actions.getFavoriteBeers()

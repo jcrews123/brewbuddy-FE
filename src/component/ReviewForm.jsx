@@ -1,11 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Context } from '../store/appContext';
-import { Link } from "react-router";
+import { useState } from 'react';
 import { Cloudinary } from '@cloudinary/url-gen';
-import { AdvancedImage } from '@cloudinary/react';
-import { fill } from '@cloudinary/url-gen/actions/resize';
-import { image } from '@cloudinary/url-gen/qualifiers/source';
 import { useNavigate } from 'react-router';
+import useDefaultStore from "../store/store";
 
 export const ReviewForm = ({ brewery, onSaveReview }) => {
     const [overallRating, setOverallRating] = useState(0);
@@ -13,7 +9,8 @@ export const ReviewForm = ({ brewery, onSaveReview }) => {
     const [isFavoriteBrewery, setIsFavoriteBrewery] = useState(false);
     const [addToFavoriteBeers, setAddToFavoriteBeers] = useState(false);
     const [beerReviews, setBeerReviews] = useState([]);
-    const { store, actions } = useContext(Context);
+    const store = useDefaultStore()
+    const actions = useDefaultStore()
     const [imageFile, setImageFile] = useState(null);
     const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
     const navigate=useNavigate()
@@ -110,7 +107,7 @@ export const ReviewForm = ({ brewery, onSaveReview }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} class={"text-light"}>
             <h2>Review {brewery.name}</h2>
             <div>
                 <label>Overall Rating:</label>

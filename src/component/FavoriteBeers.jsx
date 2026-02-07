@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Context } from "../store/appContext";
+import React, { useState, useEffect } from "react";
+import useDefaultStore from "../store/store";
 
 export const FavoriteBeers = () => {
-  const { store, actions } = useContext(Context)
+  const store = useDefaultStore()
+  const actions = useDefaultStore()
   const [items, setItems] = useState([]);
   const [beersList, setBeersList] = useState([]);
 

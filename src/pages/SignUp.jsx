@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Context } from "../store/appContext";
+import { useState } from "react";
+import useDefaultStore from "../store/store";
+
 import { Link, useNavigate } from "react-router";
 
 export const SignUp = () => {
-    const { store, actions } = useContext(Context);
+    const actions = useDefaultStore()
     const [credentials, setCredentials] = useState({ email: "", password: "" });
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
@@ -23,6 +24,7 @@ export const SignUp = () => {
                 setErrorMessage("Sign up failed. Please try again.")
             }
         } catch (error) {
+            console.error(error)
             setErrorMessage("Error occurred. Please try again at another time")
         }
     }

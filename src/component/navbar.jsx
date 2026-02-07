@@ -12,7 +12,7 @@ export const Navbar = () => {
         if (store.token) {
             actions.fetchUserInfo();
         }
-    }, [store.token, actions]);
+    }, [store.token]);
 
     const handleLogout = () => {
         actions.logout();

@@ -1,11 +1,11 @@
-import React, { useContext, useState, useCallback } from "react";
-import { Context } from "../store/appContext";
+import React, { useState } from "react";
+
 import "../styles/home.css";
-import { BreweryCard, JourneyCard } from "../component/BootstrapCard";
+import { JourneyCard } from "../component/BootstrapCard";
 import { ReviewForm } from '../component/ReviewForm';
 import "../styles/BreweryRoute.css"
-import { BreweryRouteCard } from "../component/BootstrapCardRoute";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import useDefaultStore from "../store/store";
 
 // window.initMap = initMap;
 const containerStyle = {
@@ -18,12 +18,13 @@ const initialCenter = {
     lng: -38.523
 };
 export const BreweryRoutes = () => {
-    const { store, actions } = useContext(Context);
+    const store = useDefaultStore()
+    const actions = useDefaultStore()
     const [selectedBrewery, setSelectedBrewery] = useState(null);
     const [center, setCenter] = useState(initialCenter);
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: process.env.GOOGLE_API_KEY
+        googleMapsApiKey: import.meta.env.GOOGLE_API_KEY
     });
     const [map, setMap] = useState(null);
 

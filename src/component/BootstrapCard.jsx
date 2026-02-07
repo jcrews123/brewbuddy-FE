@@ -1,8 +1,8 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router";
 import '../styles/JourneyCard.css'
+import useDefaultStore from "../store/store";
 
 
 const breweryTypeIcons = {
@@ -15,8 +15,8 @@ const breweryTypeIcons = {
 
 
 export const BreweryCard = (props) => {
-    const { store, actions } = useContext(Context);
-    const navigate = useNavigate()
+    const store = useDefaultStore()
+    const actions = useDefaultStore()
     const breweryType = props.breweryData.brewery_type;
     const [currentFavorite, setCurrentFavorite] = useState(false)
     const [favoriteBrewery, setFavoriteBrewery] = useState("")
@@ -115,8 +115,6 @@ export const BreweryCard = (props) => {
 }
 
 export const JourneyCard = ({ breweryData, onReview, onRefocus, route }) => {
-    const { store } = useContext(Context);
-
     return (
         <div className="journey-card fun-card">
             <div className="journey-card-header">

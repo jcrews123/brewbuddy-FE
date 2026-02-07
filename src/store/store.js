@@ -146,6 +146,29 @@ const useDefaultStore = create((set, get) => ({
   favoritePeople: [],
   userRewards: [],
   over20: false,
+signUp: async (email, password) => {
+				try {
+					const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/signup`, {
+						method: "POST",
+						headers: {
+							"Content-type": "application/json"
+						},
+						body: JSON.stringify({ email, password })
+					})
+					if (response.ok) {
+						const data = await response.json();
+						console.log("signup successful", data);
+						return { ok: true };
+					} else {
+						const errorData = await response.json();
+						console.error("signup failed", errorData)
+
+					}
+				} catch (error) {
+					console.error("error during signup", error);
+					return { ok: false, error: error.message };
+				}
+			},
 
   login: async (email, password) => {
 				try {
@@ -176,6 +199,33 @@ const useDefaultStore = create((set, get) => ({
 					return { success: false, error: error.message };
 				}
 			},
+            fetchUserInfo: async () => {
+				const store = get();
+				try {
+					const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${store.token}`
+						}
+					});
+					if (response.ok) {
+						const data = await response.json();
+						set({
+							// EJQ - user: data,
+							// userData: data,
+							userEmail: data.email,
+							userProfileImageId: data.profile_image ? data.profile_image.image_url : null,
+							userProfilePublicId: data.profile_image ? data.profile_image.public_id : null,
+							userPoints: data.points
+						});
+					} else {
+						console.error("Failed to fetch user info", response.status);
+					}
+				} catch (error) {
+					console.error("Error fetching user info", error);
+				}
+			},
+
             fetchBreweryInfoTEST: async () => {
                             try {
                                 const resp = await fetch("https://api.openbrewerydb.org/v1/breweries?per_page=3", {
@@ -280,7 +330,7 @@ const useDefaultStore = create((set, get) => ({
                                     }
                                 });
                                 let data = await response.json();
-                                console.log(data)
+                                console.table(data)
                                 // const brewery = new BreweryInfo(data);
                                 data.forEach(element => {
                                     if (element.state == store.state) {

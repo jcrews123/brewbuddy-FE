@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router";
-import { Context } from "../store/appContext";
+import { useState, useEffect } from "react";
 import { BeerCard } from "../component/beerCard";
-
+import useDefaultStore from "../store/store";
 export const Brewery = () => {
-    const { store, actions } = useContext(Context);
+    const store = useDefaultStore()
+    const actions = useDefaultStore()
     const [breweryName, setBreweryName] = useState("");
     const [beerNameValue, setBeerNameValue] = useState("");
     const [flavorValue, setFlavorValue] = useState("");

@@ -9,7 +9,7 @@ export const Search = () => {
 
 	useEffect(() => {
 		actions.getBreweryReviewsFromBackend();
-	}, [actions]); // Empty array ensures it runs only once
+	}, []); // Empty array ensures it runs only once
 
 	const eachBrewery = store.breweryData.map((breweryData, index) => (
 		<BreweryCard key={index} breweryData={breweryData} />
