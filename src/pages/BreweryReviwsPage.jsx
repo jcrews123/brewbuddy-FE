@@ -1,13 +1,14 @@
-import React, { useContext, useState, useCallback } from "react";
-import { Context } from "../store/appContext";
 import "../styles/home.css";
-import { BreweryCard, JourneyCard, ReviewCard } from "../component/BootstrapCard";
-import { ReviewForm } from '../component/ReviewForm';
+import { ReviewCard } from "../component/BootstrapCard";
 import "../styles/BreweryRoute.css"
-import { useParams } from "react-router";
+import { useParams } from "react-router"
+import useDefaultStore from "../store/store";
+
+
 
 export const BreweryReviews = () => {
-    const { store, actions } = useContext(Context);
+    const store = useDefaultStore()
+
     const { id } = useParams()
     const breweryReviews = id in store.reviewsObject ? store.reviewsObject[id] : [];
     // store.reviewsObject.forEach(review => {

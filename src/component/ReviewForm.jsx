@@ -15,7 +15,6 @@ export const ReviewForm = ({ brewery, onSaveReview }) => {
     const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
     const navigate=useNavigate()
 
-    const cld = new Cloudinary({ cloud: { cloudName: 'dprmqr54a' } });
 
     // useEffect(() => {
     //     console.log("Brewery Coming in From Brewery Route", brewery)
@@ -43,7 +42,7 @@ export const ReviewForm = ({ brewery, onSaveReview }) => {
         formData.append('review_id', review_id)
 
         try {
-            const response = await fetch(`${process.env.BACKEND_URL}/api/images`, {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/images`, {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${store.token}`
@@ -90,7 +89,7 @@ export const ReviewForm = ({ brewery, onSaveReview }) => {
             await actions.addFavoriteBrewery(checkedFavBreweryData);
         }
 
-        let data = await actions.addBreweryReviewToBackend(brewery, overallRating, reviewText, isFavoriteBrewery, beerReviews, data?.id);
+        let data = await actions.addBreweryReviewToBackend(brewery, overallRating, reviewText, isFavoriteBrewery, beerReviews);
         let _image;
         if (imageFile) {
             _image = await handleImageUpload(data.id);

@@ -1,12 +1,9 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router";
-import { Context } from "../store/appContext";
-import { Link } from "react-router";
-import { solid } from "@cloudinary/url-gen/actions/border";
+import useDefaultStore from "../store/store";
 
 export const BeerCard = (props) => {
     console.log(props)
-    const { store, actions } = useContext(Context);
+    const store = useDefaultStore()
+    const actions = useDefaultStore()
 console.log(store.favoriteBeers)
     return (
         <div className="card col-sm-6 col-md-4 my-2">

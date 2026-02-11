@@ -26,6 +26,7 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <ScrollToTop>
         <Navbar />
+        <div className='container-fluid text-light'>
         <Routes>
           <Route element={<Home />} path="/" />
           <Route element={<Login />} path="/login" />
@@ -42,6 +43,7 @@ createRoot(document.getElementById('root')).render(
           <Route element={<Brewery />} path="/brewery/:id" />
           <Route element={<Search />} path="/search" />
         </Routes>
+        </div>
         <Footer />
       </ScrollToTop>
     </BrowserRouter>,

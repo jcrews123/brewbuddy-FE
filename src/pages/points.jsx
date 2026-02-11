@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Context } from "../store/appContext";
+import { useState, useEffect } from "react";
 import "../styles/points.css";
+import useDefaultStore from "../store/store";
 
 export const Points = () => {
     const [selectedSize, setSelectedSize] = useState("Size");
-    const { store, actions } = useContext(Context);
+    const store = useDefaultStore()
+    const actions = useDefaultStore()
     const [userInfo, setUserInfo] = useState([]);
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
-    const [currentReward, setCurrentReward] = useState([]);
-    const [userRewards, setUserRewards] = useState([{}]);
 
     useEffect(() => {
         actions.fetchUserInfo();
@@ -17,7 +16,7 @@ export const Points = () => {
 
     const fetchUserInfo = async () => {
         try {
-            const response = await fetch(`${process.env.BACKEND_URL}/api/user`, {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
                 headers: { Authorization: `Bearer ${store.token}` }
             });
             if (response.ok) {
@@ -32,7 +31,7 @@ export const Points = () => {
     
     const redeemReward = async (rewardName, rewardValue, rewardType, pointsCost) => {
         try {
-            const response = await fetch(`${process.env.BACKEND_URL}/api/add_user_reward`, {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/add_user_reward`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
-import { Context } from "../store/appContext";
 import { Link } from 'react-router';
-export default function UserDetails(props) {
+import useDefaultStore from "../store/store";
 
-    const { store, actions } = useContext(Context);
+
+export default function UserDetails(props) {
+    const store = useDefaultStore()
+    
     return (
         <div className='mt-5'>
             <ul className="nav nav-pills nav-fill">

@@ -1,12 +1,15 @@
-import { useState, useEffect, useContext } from "react";
-import { Context } from "../store/appContext";
+import { useState, useEffect } from "react";
 import { Cloudinary } from '@cloudinary/url-gen';
 import { AdvancedImage } from '@cloudinary/react';
 import "../styles/UserProfile.css";
 import { fill } from '@cloudinary/url-gen/actions/resize';
 import UserDetails from "../component/UserDetails";
+import useDefaultStore from "../store/store";
+
+
 export const UserProfile = () => {
-    const { store, actions } = useContext(Context);
+        const store = useDefaultStore()
+    const actions = useDefaultStore()
     const [userInfo, setUserInfo] = useState(null);
     const [pointHistory, setPointHistory] = useState([]);
     const [imageFile, setImageFile] = useState(null);
@@ -14,15 +17,11 @@ export const UserProfile = () => {
 
     const cld = new Cloudinary({ cloud: { cloudName: 'dprmqr54a' } });
 
-    useEffect(() => {
-        fetchUserInfo();
-        actions.getRewardsFromBackend();
-        fetchPointHistory();
-    }, []);
+  
 
     const fetchUserInfo = async () => {
         try {
-            const response = await fetch(`${process.env.BACKEND_URL}/api/user`, {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
                 headers: { Authorization: `Bearer ${store.token}` }
             });
             if (response.ok) {
@@ -36,7 +35,7 @@ export const UserProfile = () => {
 
     const fetchPointHistory = async () => {
         try {
-            const response = await fetch(`${process.env.BACKEND_URL}/api/point_history`, {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/point_history`, {
                 headers: { Authorization: `Bearer ${store.token}` }
             });
             if (response.ok) {
@@ -61,7 +60,7 @@ export const UserProfile = () => {
         formData.append("mode", "profile");
 
         try {
-            const response = await fetch(`${process.env.BACKEND_URL}/api/images`, {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/images`, {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${store.token}`
@@ -81,7 +80,14 @@ export const UserProfile = () => {
             console.error("Error uploading image:", error);
         }
     };
-
+  useEffect(() => {
+    const handleFetch = async () => {
+        fetchUserInfo();
+        actions.getRewardsFromBackend();
+        fetchPointHistory();
+    }
+        handleFetch()
+    }, []);
     return (
         <div className="container mt-4">
             {userInfo && (

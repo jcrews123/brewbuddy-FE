@@ -199,6 +199,19 @@ signUp: async (email, password) => {
 					return { success: false, error: error.message };
 				}
 			},
+            logout: () => {
+				try {
+					sessionStorage.removeItem("token");
+					sessionStorage.removeItem("userEmail");
+					set({ token: null, userEmail: null, userProfileImageId: null })
+					console.log("logout successful");
+				} catch (error) {
+					console.error("error during logout", error);
+				}
+			},
+            updateUserProfileImage: (imageUrl) => {
+				set({ userProfileImageId: imageUrl });
+			},
             fetchUserInfo: async () => {
 				const store = get();
 				try {

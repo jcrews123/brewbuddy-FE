@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { BeerCard } from "../component/beerCard";
 import useDefaultStore from "../store/store";
+
 export const Brewery = () => {
     const store = useDefaultStore()
     const actions = useDefaultStore()
@@ -35,7 +36,8 @@ export const Brewery = () => {
         try {
             const response = await fetch(`https://api.openbrewerydb.org/v1/breweries/${dynamicId}`)
             const data = await response.json()
-            setBreweryName(data.name)
+            return data.name
+           
         }
         catch {
             console.log("Brewery Name Failed to Fetch")
@@ -43,8 +45,11 @@ export const Brewery = () => {
     }
 
     useEffect(() => {
-        actions.getBreweryBeers(dynamicId)
-        fetchBreweryName()
+        const handleFetch = async () => {
+            setBreweryName(await fetchBreweryName())
+            actions.getBreweryBeers(dynamicId)
+        }
+        handleFetch()
     }, []);
 
     const eachBeer = store.beerData.map((beerData, index) => (
